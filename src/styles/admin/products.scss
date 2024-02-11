@@ -1,0 +1,361 @@
+.heading {
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+
+  padding: 7.5vw 5vw 2.5vw 5vw;
+}
+
+.featured-product-dashboard-container {
+  border: 1px solid lightgrey;
+  margin-bottom: 12vh;
+}
+
+.products-table-container {
+  padding: 5vw 2.5vw;
+
+  .dashboard-product-box {
+    padding: 2.5vw;
+    border: 1px solid lightgrey;
+
+    overflow-x: scroll;
+
+    .table {
+      tr {
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.093);
+
+        th {
+          padding: 10px 0;
+          text-align: left;
+
+          svg {
+            margin-left: 5px;
+            vertical-align: middle;
+          }
+        }
+        td {
+          text-align: left;
+          white-space: nowrap;
+
+          padding: 5px 0;
+          padding-right: 50px;
+
+          img {
+            border-radius: 5px;
+            width: 5rem;
+          }
+          .green,
+          .red {
+            background: green;
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+
+            margin-left: 70%;
+          }
+          .red {
+            background: red;
+          }
+          .action-button-container {
+            display: flex;
+            gap: 10px;
+            a {
+              background-color: cornflowerblue;
+              color: white;
+              border-radius: 5px;
+              display: flex;
+              gap: 5px;
+
+              padding: 7px 20px;
+
+              svg {
+                margin-left: -5px;
+              }
+            }
+            .delete-button {
+              background-color: red;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.table-pagination {
+  position: sticky;
+  left: 2vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  > button {
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: rgba(0, 115, 255);
+    color: white;
+    &:disabled {
+      background-color: rgba(0, 115, 255, 0.1);
+      cursor: not-allowed;
+    }
+  }
+}
+
+.create-product-button {
+  border: 1px solid red;
+
+  position: fixed;
+  bottom: 5vw;
+  right: 5vw;
+
+  height: 12vw;
+  width: 12vw;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: red;
+  svg {
+    height: 8vw;
+    width: 8vw;
+
+    color: white;
+  }
+}
+
+.create-product-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 90%;
+    padding: 5vw 5vw 10vw 5vw;
+
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+
+    margin-bottom: 10vw;
+
+    h2 {
+      margin: 7vw 0;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 1.3rem;
+
+      text-align: center;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      section {
+        display: block;
+        height: 25vh;
+
+        img {
+          height: 25vh;
+          width: 100%;
+
+          border: 1px solid lightgrey;
+          border-radius: 5px;
+        }
+        svg {
+          margin: 5vw calc(50% - 15vw);
+          height: 30vw;
+          width: 30vw;
+        }
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 5px;
+        border: 1px solid grey;
+        border-radius: 5px;
+        outline: none;
+      }
+      #file-input {
+        border: none;
+        margin: auto auto 15px auto;
+      }
+    }
+    button {
+      align-self: center;
+      padding: 10px 35px;
+      margin: 30px 0 15px 0;
+      background-color: red;
+      color: white;
+
+      outline: none;
+      border: none;
+      border-radius: 5px;
+
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+  }
+}
+
+.edit-product-container {
+  .product-delete-button {
+    background-color: red;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 5vh;
+    width: 5vh;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    position: absolute;
+    top: -2vh;
+    right: -2vh;
+
+    svg {
+      height: 70%;
+      width: 70%;
+    }
+  }
+
+  padding: 4vw;
+
+  > section {
+    // border: 1px solid red;
+    width: calc(100% - 2vw);
+    // height: 85vh;
+    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.5);
+    background-color: white;
+    padding: 10vw 2vw;
+    // display: flex;
+    // flex-direction: column;
+    // gap: 1rem;
+    position: relative;
+    border-radius: 5px;
+
+    strong {
+      padding: 10px;
+      font-weight: 300;
+    }
+
+    img {
+      border: 1px solid grey;
+      border-radius: 10px;
+      height: 30vh;
+      width: 100%;
+    }
+
+    > span {
+      position: absolute;
+      // le: 2vw;
+      top: 2vw;
+      left: 5vw;
+      text-transform: uppercase;
+
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+    }
+    > p {
+      text-align: center;
+      letter-spacing: 2px;
+      padding: 5px;
+      text-transform: uppercase;
+    }
+    > .product-details {
+      margin: 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
+
+      p {
+        letter-spacing: 1px;
+      }
+    }
+  }
+  > article {
+    margin-top: 5vh;
+    width: calc(100% - 2vw);
+    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.5);
+    background-color: white;
+    padding: 10vw 2vw;
+    position: relative;
+    border-radius: 5px;
+  }
+  .create-product-container {
+    width: 100%;
+    form {
+      box-shadow: none;
+      border: none;
+      margin: 0;
+      padding: 0;
+
+      input::placeholder {
+        opacity: 0.5;
+      }
+
+      h2 {
+        text-align: center;
+      }
+    }
+  }
+}
+
+// .confirmation-dailog-box {
+//   position: fixed;
+//   left: 10%;
+//   bottom: 15%;
+//   width: 80%;
+//   height: 25vh;
+//   border: 1px solid grey;
+//   border-radius: 10px;
+//   background-color: white;
+
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: space-evenly;
+
+//   svg {
+//     font-size: 2.5rem;
+//     border: 1px solid red;
+//     border-radius: 50%;
+
+//     color: white;
+//     background-color: red;
+
+//     padding: 10px 0;
+//   }
+//   p {
+//     margin: 0 35px;
+//     text-align: center;
+//   }
+//   section {
+//     width: 75%;
+
+//     button {
+//       outline: none;
+//       height: 5vh;
+//       width: 50%;
+//     }
+//   }
+// }

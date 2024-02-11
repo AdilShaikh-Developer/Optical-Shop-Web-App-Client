@@ -1,0 +1,317 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// temp css because app is currently only available on mobile
+#root {
+  margin: auto;
+  max-width: 480px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+
+.navbar {
+  z-index: 10;
+
+  position: sticky;
+  top: 0;
+
+  background-color: white;
+
+  box-shadow: 5px 5px 10px rgba(211, 211, 211, 0.5);
+
+  border-radius: 15px;
+
+  margin: auto;
+
+  height: 12vh;
+  width: 95%;
+
+  padding: 0 7vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  a > img {
+    max-height: 7vh;
+    border: 1px solid grey;
+    border-radius: 50%;
+  }
+
+  ul {
+    display: flex;
+    justify-content: space-evenly;
+    // width: 30%;
+    // font-size: 1.7rem;
+
+    li {
+      width: 50%;
+      display: flex;
+      justify-content: center;
+
+      padding: 5px;
+
+      > img,
+      svg {
+        height: 5vh;
+        width: 5vh;
+        border-radius: 50%;
+      }
+      > img {
+        border: 1px solid grey;
+
+        padding: 2px;
+      }
+    }
+  }
+}
+
+.profile-menu {
+  border: 1px solid lightgrey;
+  border-radius: 15px;
+
+  box-shadow: 15px 15px 25px 1px grey;
+
+  position: fixed;
+  top: 6.5vh;
+  right: 14vw;
+
+  height: 55vh;
+  width: 70vw;
+
+  background-color: white;
+
+  z-index: 11;
+
+  .profile {
+    border-bottom: 1px solid lightgrey;
+    height: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    a {
+      border: 1px solid grey;
+      border-radius: 50%;
+
+      width: 15vw;
+      height: 15vw;
+
+      font-size: 2rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        padding: 2px;
+      }
+    }
+    .profile-details {
+      height: 12vw;
+      width: 60%;
+
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+
+      span {
+        color: grey;
+        font-size: 0.8rem;
+      }
+    }
+  }
+  ul {
+    height: 75%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+
+    li {
+      margin: 0 7%;
+
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+          font-size: 1.7rem;
+          margin-right: 15px;
+        }
+      }
+    }
+  }
+}
+
+// code below is generated through chatGPT
+.footer {
+  background-color: #000; // Black background
+  color: #fff; // White text color
+  text-align: center;
+
+  padding: 25px;
+
+  height: 55vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    font-size: 1.5rem;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      // flex-wrap: wrap;
+    }
+
+    .footer-section {
+      margin-right: 20px;
+
+      &.about {
+        flex: 2;
+
+        .logo {
+          font-size: 1.5rem;
+          margin-bottom: 10px;
+        }
+
+        .contact {
+          margin-top: 10px;
+          font-size: 0.9rem;
+        }
+
+        .social {
+          margin-top: 10px;
+
+          a {
+            color: #fff;
+            margin-right: 10px;
+            font-size: 1.2rem;
+          }
+        }
+      }
+
+      &.quick-links {
+        flex: 1;
+        margin-bottom: 15px;
+
+        h2 {
+          font-size: 1.2rem;
+          margin-bottom: 10px;
+        }
+
+        ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+
+          display: flex;
+          justify-content: space-evenly;
+
+          li {
+            margin-left: 20px;
+
+            a {
+              color: #fff;
+              text-decoration: none;
+
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .footer-bottom {
+    background-color: #333; // Darker background for the bottom section
+    padding: 10px 0;
+    text-align: center;
+
+    p {
+      margin: 0;
+      font-size: 0.8rem;
+    }
+  }
+}
+
+// Loader.scss
+
+.loader-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Adjust height as needed */
+}
+
+.loader {
+  border: 8px solid #f3f3f3; /* Light grey */
+  border-top: 8px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.skeleton-loader {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.skeleton-shape {
+  height: 30px;
+  width: 100%;
+  background-color: #ddd;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  animation: skeleon-loading 1.5s infinite;
+}
+
+@keyframes skeleon-loading {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
