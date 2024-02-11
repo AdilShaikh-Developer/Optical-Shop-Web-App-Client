@@ -75,7 +75,7 @@ const ProductDashboard = () => {
     try {
       if (confirmation) {
         const res = await axios.delete(
-          `${import.meta.env.vite_server}/api/v1/featured-products/${
+          `${import.meta.env.VITE_SERVER}/api/v1/featured-products/${
             e.target.attributes.value.value
           }`
         );
@@ -93,7 +93,7 @@ const ProductDashboard = () => {
     try {
       if (confirmation) {
         const res = await axios.post(
-          `${import.meta.env.vite_server}/api/v1/featured-products/${
+          `${import.meta.env.VITE_SERVER}/api/v1/featured-products/${
             e.target.attributes.value.value
           }`
         );
@@ -111,7 +111,7 @@ const ProductDashboard = () => {
     try {
       if (confirmation) {
         const res = await axios.put(
-          `${import.meta.env.vite_server}/api/v1/products/${
+          `${import.meta.env.VITE_SERVER}/api/v1/products/${
             e.target.attributes.value.value
           }/availability`
         );
@@ -129,7 +129,7 @@ const ProductDashboard = () => {
     try {
       if (confirmation) {
         const res = await axios.delete(
-          `${import.meta.env.vite_server}/api/v1/products/${
+          `${import.meta.env.VITE_SERVER}/api/v1/products/${
             e.target.attributes.value.value
           }`
         );
@@ -146,7 +146,7 @@ const ProductDashboard = () => {
     if (data)
       setRows(
         data.map((i) => ({
-          photos: <img src={`${import.meta.env.vite_server}/${i.photos[0]}`} />,
+          photos: <img src={`${import.meta.env.VITE_SERVER}/${i.photos[0]}`} />,
           name: i.name,
           category: i.category,
 
@@ -232,7 +232,7 @@ const ProductDashboard = () => {
     setFeaturedProductsRows(
       featuredProducts.map((i) => ({
         _id: i._id,
-        photo: <img src={`${import.meta.env.vite_server}/${i.photo}`} />,
+        photo: <img src={`${import.meta.env.VITE_SERVER}/${i.photo}`} />,
         action: (
           <div className="action-button-container">
             <Link

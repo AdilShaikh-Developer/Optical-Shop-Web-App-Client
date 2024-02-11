@@ -39,7 +39,7 @@ const Navbar = ({ user }) => {
         <Link to="/">
           {/* this logo can be updated by admin  */}
           <img
-            src={`${import.meta.env.vite_server}/uploads/logo.png`}
+            src={`${import.meta.env.VITE_SERVER}/uploads/logo.png`}
             alt="shop logo"
           />
         </Link>

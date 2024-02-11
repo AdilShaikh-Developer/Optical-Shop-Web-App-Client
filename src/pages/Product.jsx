@@ -85,7 +85,7 @@ const Product = () => {
         review,
       };
       const res = await axios.post(
-        `${import.meta.env.vite_server}/api/v1/products/${
+        `${import.meta.env.VITE_SERVER}/api/v1/products/${
           product._id
         }/ratings-and-reviews`,
         request

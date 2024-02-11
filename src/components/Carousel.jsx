@@ -39,11 +39,11 @@ function Carousel({
             <img src={photo} alt="" />
           ) : photo.photo ? (
             <Link to={`/shop/${photo._id}`}>
-              <img src={`${import.meta.env.vite_server}/${photo.photo}`} />
+              <img src={`${import.meta.env.VITE_SERVER}/${photo.photo}`} />
             </Link>
           ) : (
             <>
-              <img src={`${import.meta.env.vite_server}/${photo}`} />
+              <img src={`${import.meta.env.VITE_SERVER}/${photo}`} />
               {description ? (
                 <div className="description">{description[index]}</div>
               ) : (

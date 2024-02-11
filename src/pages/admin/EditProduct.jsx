@@ -45,7 +45,7 @@ const EditProduct = () => {
     try {
       if (confirmation) {
         const res = await axios.delete(
-          `${import.meta.env.vite_server}/api/v1/products/${product._id}`
+          `${import.meta.env.VITE_SERVER}/api/v1/products/${product._id}`
         );
         toast.success(res.data.message);
         navigate("/admin/products-dashboard");
@@ -69,7 +69,7 @@ const EditProduct = () => {
     formData.set("colour", colour);
     try {
       const res = await axios.put(
-        `${import.meta.env.vite_server}/api/v1/products/${product._id}`,
+        `${import.meta.env.VITE_SERVER}/api/v1/products/${product._id}`,
         formData
       );
       toast.success(res.data.message);

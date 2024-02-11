@@ -20,7 +20,7 @@ const ProductCard = ({ product }) => {
   const likeHandler = async (e) => {
     e.target.style.pointerEvents = "none";
     const res = await axios.put(
-      `${import.meta.env.vite_server}/api/v1/users/liked-products/add`,
+      `${import.meta.env.VITE_SERVER}/api/v1/users/liked-products/add`,
       { userId: user._id, productId: product._id }
     );
     toast.success(res.data.message);
@@ -31,7 +31,7 @@ const ProductCard = ({ product }) => {
     e.target.style.pointerEvents = "none";
 
     const res = await axios.put(
-      `${import.meta.env.vite_server}/api/v1/users/liked-products/remove`,
+      `${import.meta.env.VITE_SERVER}/api/v1/users/liked-products/remove`,
       { userId: user._id, productId: product._id }
     );
     toast.success(res.data.message);
@@ -42,7 +42,7 @@ const ProductCard = ({ product }) => {
   const addToCartHandler = async (e) => {
     e.target.style.pointerEvents = "none";
     const res = await axios.put(
-      `${import.meta.env.vite_server}/api/v1/users/cart/add`,
+      `${import.meta.env.VITE_SERVER}/api/v1/users/cart/add`,
       {
         userId: user._id,
         productId: product._id,
@@ -55,7 +55,7 @@ const ProductCard = ({ product }) => {
   const removeFromCartHandler = async (e) => {
     e.target.style.pointerEvents = "none";
     const res = await axios.put(
-      `${import.meta.env.vite_server}/api/v1/users/cart/remove`,
+      `${import.meta.env.VITE_SERVER}/api/v1/users/cart/remove`,
       { userId: user._id, productId: product._id }
     );
     toast.success(res.data.message);

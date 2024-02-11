@@ -38,7 +38,7 @@ export const fetchUser = async (dispatch) => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         const res = await axios.post(
-          `${import.meta.env.vite_server}/api/v1/users/profile`,
+          `${import.meta.env.VITE_SERVER}/api/v1/users/profile`,
           { id: user.uid }
         );
 
@@ -56,7 +56,7 @@ export const fetchUser = async (dispatch) => {
 export const fetchLikedProducts = async (dispatch, userId) => {
   try {
     const res = await axios.post(
-      `${import.meta.env.vite_server}/api/v1/users/liked-products`,
+      `${import.meta.env.VITE_SERVER}/api/v1/users/liked-products`,
       { userId }
     );
     dispatch(userLikedProduct(res.data.response));
@@ -68,7 +68,7 @@ export const fetchLikedProducts = async (dispatch, userId) => {
 export const fetchCartItems = async (dispatch, userId) => {
   try {
     const res = await axios.post(
-      `${import.meta.env.vite_server}/api/v1/users/cart`,
+      `${import.meta.env.VITE_SERVER}/api/v1/users/cart`,
       {
         userId,
       }

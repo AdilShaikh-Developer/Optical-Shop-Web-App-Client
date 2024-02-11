@@ -54,7 +54,7 @@ const CreateProduct = () => {
 
     try {
       const res = await axios.post(
-        `${import.meta.env.vite_server}/api/v1/products`,
+        `${import.meta.env.VITE_SERVER}/api/v1/products`,
         formData
       );
       toast.success(res.data.message);
