@@ -31,8 +31,8 @@ const Home = () => {
 
   useEffect(() => {
     if (featuredProducts) {
-      featuredProducts.forEach((product, index) => {
-        photos[index] = product;
+      featuredProducts.forEach((product) => {
+        setPhotos((prev) => [...prev, product]);
       });
     }
   }, []);
