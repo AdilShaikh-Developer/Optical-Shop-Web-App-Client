@@ -1,4 +1,6 @@
 // Importing Modules
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import {
   Autoplay,
   EffectCoverflow,
@@ -9,7 +11,9 @@ import {
 // Importing Components
 import { Link } from "react-router-dom";
 import Carousel from "../components/Carousel";
+import SkeletonLoader from "../components/SkeletonLoader";
 
+// Importing Icons
 import { CiShare1 } from "react-icons/ci";
 
 // Importing Stylesheets
@@ -20,17 +24,15 @@ import "swiper/scss/autoplay";
 import "swiper/scss/effect-coverflow";
 import "swiper/scss/effect-fade";
 import "swiper/scss/pagination";
-import { useSelector } from "react-redux";
-import { lazy, useEffect, useState } from "react";
-import SkeletonLoader from "../components/SkeletonLoader";
 
 const Home = () => {
   const [photos, setPhotos] = useState([]);
   const { loading, featuredProducts } = useSelector((state) => state.product);
+
   useEffect(() => {
     if (featuredProducts) {
-      featuredProducts.forEach((product) => {
-        setPhotos([...photos, product]);
+      featuredProducts.forEach((product, index) => {
+        photos[index] = product;
       });
     }
   }, []);
@@ -53,7 +55,7 @@ const Home = () => {
       <div className="sliding-carousel-container">
         <h2>variety of products</h2>
         {loading ? (
-          <SkeletonLoader width="100%" length="4" />
+          <SkeletonLoader width="80%" length="4" />
         ) : (
           <Carousel
             effect={"coverflow"}

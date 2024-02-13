@@ -1,12 +1,12 @@
 import axios from "axios";
+import toast from "react-hot-toast";
 import {
+  storeCategories,
+  storeFeaturedProducts,
+  storeProcessFailed,
   storeProduct,
   storeProducts,
-  storeFeaturedProducts,
-  storeCategories,
-  storeProcessFailed,
 } from "../reducers/product";
-import toast from "react-hot-toast";
 
 export const fetchProduct = async (dispatch, productId) => {
   try {

@@ -1,18 +1,20 @@
-import { ReactElement } from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
-const ProtectedRoute = ({
-  isAuthenticated,
-  children,
-  adminOnly,
-  admin,
-  redirect = "/",
-}) => {
-  if (!isAuthenticated) return <Navigate to={redirect} />;
-
-  if (adminOnly && !admin) return <Navigate to={redirect} />;
-
-  return children ? children : <Outlet />;
+const ProtectedRoute = ({ Component, user, isAdminRoute, admin }) => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+    if (isAdminRoute) {
+      if (!admin) {
+        navigate("/");
+      }
+    }
+  }, []);
+  return <Component />;
 };
 
 export default ProtectedRoute;

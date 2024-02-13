@@ -1,17 +1,22 @@
-import Navbar from "../../components/admin/Navbar";
-import { DoughnutChart, LineChart } from "../../components/admin/Charts";
+// Importing Modules
 import moment from "moment";
-import { HiTrendingUp, HiTrendingDown } from "react-icons/hi";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
+// Importing Components
+import { DoughnutChart, LineChart } from "../../components/admin/Charts";
+import Navbar from "../../components/admin/Navbar";
+import Loader from "../../components/Loader.jsx";
+
+// Importing Icons
+import { HiTrendingDown, HiTrendingUp } from "react-icons/hi";
+
+// Importing Actions
+import { fetchAdminDashboardStats } from "../../app/actions/admin-dashboard";
+
+// Importing Stylesheets
 import "../../styles/admin/admin.scss";
 import "../../styles/admin/dashboard.scss";
-import { useEffect } from "react";
-import {
-  fetchAdminDashboardStats,
-  fetchDashboardProducts,
-} from "../../app/actions/admin-dashboard";
-import { useSelector, useDispatch } from "react-redux";
-import SkeletonLoader from "../../components/SkeletonLoader.jsx";
 
 const Dashboard = () => {
   const { loading, dashboardStats } = useSelector((state) => state.admin);
@@ -44,12 +49,18 @@ const Dashboard = () => {
     };
   };
 
+  useEffect(() => {
+    fetchAdminDashboardStats(dispatch);
+  });
+
   const { last12Months: months } = getLastMonths();
 
   return (
     <div className="admin-dashboard-page">
       <Navbar />
-      {dashboardStats ? (
+      {loading ? (
+        <Loader />
+      ) : dashboardStats ? (
         <>
           <section className="widget-container">
             <WidgetItem
@@ -123,7 +134,7 @@ const Dashboard = () => {
           </div>
         </>
       ) : (
-        <SkeletonLoader length={15} />
+        ""
       )}
     </div>
   );

@@ -1,10 +1,14 @@
+// Importing Modules
 import { useEffect, useState } from "react";
-import TableHOC from "../../components/admin/TableHOC";
-import Navbar from "../../components/admin/Navbar";
+import { useSelector } from "react-redux";
 
+// Importing Components
+import Navbar from "../../components/admin/Navbar";
+import TableHOC from "../../components/admin/TableHOC";
+
+// Importing Stylesheets
 import "../../styles/admin/admin.scss";
 import "../../styles/admin/products.scss";
-import { useSelector } from "react-redux";
 
 const columns = [
   {
@@ -30,13 +34,13 @@ const columns = [
 ];
 
 const CustomerDashboard = () => {
-  const data = useSelector((state) => state.admin.dashboardCustomers);
+  const { dashboardCustomers } = useSelector((state) => state.admin);
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
-    if (data)
+    if (dashboardCustomers)
       setRows(
-        data.map((i) => ({
+        dashboardCustomers.map((i) => ({
           photo: <img src={i.photo} style={{ borderRadius: "50%" }} />,
           name: i.name,
           email: i.email,
@@ -50,12 +54,13 @@ const CustomerDashboard = () => {
             " Days",
         }))
       );
-  }, [data]);
+  }, [dashboardCustomers]);
 
   const Table = TableHOC(
     columns,
     rows,
     "dashboard-product-box",
+    5,
     rows.length > 5
   )();
 

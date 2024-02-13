@@ -1,19 +1,24 @@
-import React from "react";
+// Importing Modules
 import axios from "axios";
-import toast from "react-hot-toast";
-
-import Navbar from "../../components/admin/Navbar";
-
-import { FcAddImage } from "react-icons/fc";
 import { useState } from "react";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
 
+// Importing Components
+import Navbar from "../../components/admin/Navbar";
+import Carousel from "../../components/Carousel";
+
+// Importing Icons
+import { FcAddImage } from "react-icons/fc";
+
+// Importing Actions
+import { fetchDashboardProducts } from "../../app/actions/admin-dashboard";
+
+// Importing Stylesheets
 import "../../styles/admin/admin.scss";
 import "../../styles/admin/products.scss";
-import Carousel from "../../components/Carousel";
-import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { fetchDashboardProducts } from "../../app/actions/admin-dashboard";
 
 const CreateProduct = () => {
   const [photos, setPhotos] = useState([]);
@@ -57,12 +62,12 @@ const CreateProduct = () => {
         `${import.meta.env.VITE_SERVER}/api/v1/products`,
         formData
       );
+      fetchDashboardProducts(dispatch);
       toast.success(res.data.message);
+      navigate("/admin/products-dashboard");
     } catch (error) {
       toast.error(error.response.data.message);
     }
-    fetchDashboardProducts(dispatch);
-    navigate("/admin/products-dashboard");
   };
 
   return (

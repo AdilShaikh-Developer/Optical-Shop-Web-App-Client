@@ -1,19 +1,26 @@
+// Importing Modules
+import axios from "axios";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchProduct, fetchProducts } from "../app/actions/product";
-import SkeletonLoader from "../components/SkeletonLoader";
-import { IoIosArrowRoundBack, IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
-import { Link } from "react-router-dom";
-
-import "../styles/product.scss";
-import Carousel from "../components/Carousel";
-import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
 import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
+
+// Importing Components
+import { Link } from "react-router-dom";
+import Carousel from "../components/Carousel";
+import SkeletonLoader from "../components/SkeletonLoader";
+
+// Importing Redux Actions
+import { fetchProduct } from "../app/actions/product";
+
+// Importing React Icons
 import { CiShare2 } from "react-icons/ci";
 import { FaStar, FaStarHalf, FaWhatsapp } from "react-icons/fa";
+import { IoIosArrowRoundBack, IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
 import { IoCart, IoCartOutline } from "react-icons/io5";
-import PageNotFound from "./PageNotFound";
-import axios from "axios";
+
+// Importing Stylesheets
+import "../styles/product.scss";
 
 const Product = () => {
   const { loading } = useSelector((state) => state.product);
@@ -37,7 +44,7 @@ const Product = () => {
     );
     toast.success(res.data.message);
     e.target.style.pointerEvents = "auto";
-    fetchProducts(dispatch);
+    fetchProduct(dispatch, product._id);
   };
   const unlikeHandler = async (e) => {
     e.target.style.pointerEvents = "none";
@@ -48,7 +55,7 @@ const Product = () => {
     );
     toast.success(res.data.message);
     e.target.style.pointerEvents = "auto";
-    fetchProducts(dispatch);
+    fetchProduct(dispatch, product._id);
   };
 
   const addToCartHandler = async (e) => {
@@ -62,7 +69,7 @@ const Product = () => {
     );
     toast.success(res.data.message);
     e.target.style.pointerEvents = "auto";
-    fetchProducts(dispatch);
+    fetchProduct(dispatch, product._id);
   };
   const removeFromCartHandler = async (e) => {
     e.target.style.pointerEvents = "none";
@@ -72,13 +79,14 @@ const Product = () => {
     );
     toast.success(res.data.message);
     e.target.style.pointerEvents = "auto";
-    fetchProducts(dispatch);
+    fetchProduct(dispatch, product._id);
   };
 
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
       const request = {
+        userId: user._id,
         userProfile: user.photo,
         username: user.name,
         rating,
@@ -92,6 +100,7 @@ const Product = () => {
       );
 
       toast.success(res.data.message);
+      fetchProduct(dispatch, product._id);
       setRatingContainerMenu(false);
     } catch (error) {
       toast.error(error.response.data.message);
@@ -100,9 +109,9 @@ const Product = () => {
 
   useEffect(() => {
     fetchProduct(dispatch, window.location.href.slice(-24));
-  }, [product]);
+  }, [window.location.href]);
   return loading ? (
-    <SkeletonLoader length={12} />
+    <SkeletonLoader width="90%" length={15} />
   ) : product ? (
     <div className="product-page">
       <Link to={"/shop"} className="back-button">
@@ -270,14 +279,26 @@ const Product = () => {
                 {starRating[0]}%
               </div>
             </div>
-            {product.rating.filter((e) => {
-              return e.userProfile === user.photo && e.username === user.name;
-            }).length > 0 ? (
-              <span>
-                Thank you for your review! Your feedback is valuable to us.
-              </span>
+            {user ? (
+              product.rating.filter((e) => {
+                return e.userId === user._id;
+              }).length > 0 ? (
+                <span>
+                  Thank you for your review! Your feedback is valuable to us.
+                </span>
+              ) : (
+                <button onClick={() => setRatingContainerMenu(true)}>
+                  Rate Now
+                </button>
+              )
             ) : (
-              <button onClick={() => setRatingContainerMenu(true)}>
+              <button
+                onClick={() => {
+                  toast.error(
+                    "You need to login first for accessing rating feature"
+                  );
+                }}
+              >
                 Rate Now
               </button>
             )}
@@ -326,6 +347,7 @@ const Product = () => {
               toast.error("Please log in to add this item to your cart.")
             }
           >
+            Add To Cart
             <IoCartOutline style={{ cursor: "not-allowed" }} />
           </button>
         )}
@@ -387,7 +409,7 @@ const Product = () => {
       )}
     </div>
   ) : (
-    <PageNotFound />
+    <SkeletonLoader width="80%" length={15} />
   );
 };
 

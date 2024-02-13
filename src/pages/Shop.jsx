@@ -1,14 +1,20 @@
-import { Link } from "react-router-dom";
+// Importing Modules
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
+// Importing Action Functions
+import { fetchCategories, fetchProducts } from "../app/actions/product";
+
+// Importing Components
+import Loader from "../components/Loader";
 import ProductCard from "../components/ProductCard";
+import SkeletonLoader from "../components/SkeletonLoader";
 
+// Importing Icons
 import { IoSearchOutline } from "react-icons/io5";
 
+// Importing Stylesheets
 import "../styles/shop.scss";
-import { useDispatch, useSelector } from "react-redux";
-import SkeletonLoader from "../components/SkeletonLoader";
-import { useEffect, useState } from "react";
-import { fetchCategories } from "../app/actions/product";
 
 const Shop = () => {
   const { loading, products, categories } = useSelector(
@@ -21,10 +27,13 @@ const Shop = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    fetchProducts(dispatch);
     fetchCategories(dispatch);
   }, []);
 
-  return (
+  return loading ? (
+    <Loader />
+  ) : (
     <div className="shop-page">
       <div className="search-bar-wrapper">
         <div className="search-bar-container">
@@ -38,7 +47,7 @@ const Shop = () => {
         </div>
       </div>
       <div className="product-cards-container">
-        {loading ? (
+        {!products ? (
           <SkeletonLoader width="90%" length={12} />
         ) : (
           products
@@ -99,16 +108,18 @@ const Shop = () => {
           <option value="mostRated">most rated</option>
           <option value="leastRated">least rated</option>
         </select>
-        <select name="" id="" onChange={(e) => setFilter(e.target.value)}>
-          <option value="">filter</option>
-          {categories
-            ? categories.map((category) => (
-                <option value={category} key={category}>
-                  {category}
-                </option>
-              ))
-            : ""}
-        </select>
+        {!categories ? (
+          <SkeletonLoader width="100" length={2} />
+        ) : (
+          <select name="" id="" onChange={(e) => setFilter(e.target.value)}>
+            <option value="">filter</option>
+            {categories.map((category) => (
+              <option value={category} key={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+        )}
       </div>
     </div>
   );

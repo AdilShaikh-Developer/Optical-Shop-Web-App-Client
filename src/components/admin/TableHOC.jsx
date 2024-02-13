@@ -8,13 +8,19 @@ import {
   TableOptions,
 } from "react-table";
 
-const TableHOC = (columns, data, containerClassname, showPagination) => {
+const TableHOC = (
+  columns,
+  data,
+  containerClassname,
+  pageLength,
+  showPagination
+) => {
   return function HOC() {
     const options = {
       columns,
       data,
       initialState: {
-        pageSize: 5,
+        pageSize: pageLength,
       },
     };
 

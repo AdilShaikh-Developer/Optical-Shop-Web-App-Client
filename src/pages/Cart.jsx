@@ -1,18 +1,26 @@
+// Importing Modules
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+// Importing Components
 import ProductCard from "../components/ProductCard";
 
-import "../styles/cart.scss";
-import { useEffect } from "react";
-import { fetchCartItems } from "../app/actions/user";
+// Importing Icons
 import { CiShare1 } from "react-icons/ci";
 
+// Importing Actions
+import { fetchCartItems } from "../app/actions/user";
+
+// Importing Stylesheets
+import "../styles/cart.scss";
+
 const Cart = () => {
-  const { loading, cartItems, user } = useSelector((state) => state.user);
+  const { cartItems, user } = useSelector((state) => state.user);
   const { products } = useSelector((state) => state.product);
 
   const dispatch = useDispatch();
   useEffect(() => {
-    fetchCartItems(dispatch, user._id);
+    if (user) fetchCartItems(dispatch, user._id);
   }, []);
 
   return (

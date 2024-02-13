@@ -1,5 +1,8 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { authenticateUser, fetchUser } from "../app/actions/user";
 import { auth } from "../firebase-auth";
 
 // Importing Components
@@ -9,20 +12,19 @@ import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 
 // Importing Stylesheet's
-import axios from "axios";
-import toast from "react-hot-toast";
 import "../styles/auth.scss";
-import { authenticateUser } from "../app/actions/user";
 
 const Auth = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const loginHandler = async () => {
     try {
       const provider = new GoogleAuthProvider();
       const { user } = await signInWithPopup(auth, provider);
 
-      authenticateUser(user);
+      await authenticateUser(user);
+      await fetchUser(dispatch, user.uid);
       navigate("/");
     } catch (error) {
       toast.error("Authentication Failed");

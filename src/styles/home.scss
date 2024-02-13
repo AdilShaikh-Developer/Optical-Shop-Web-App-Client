@@ -3,12 +3,13 @@
   .carousel-container {
     margin: 7vw;
     border-radius: 10px;
-    box-shadow: 5px 5px 10px rgba(211, 211, 211, 0.5);
-
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
+    height: 30vh;
     img {
+      margin-bottom: 5vh;
+      height: 25vh;
       width: 100%;
       border-radius: 10px;
-      box-shadow: 2px 2px 10px rgba(211, 211, 211, 0.5);
     }
   }
   .sliding-carousel-container {
@@ -77,7 +78,7 @@
       margin: 35px 0;
       height: 80vw;
       width: 80vw;
-      box-shadow: 2px 2px 10px rgba(211, 211, 211, 0.9);
+      box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
       border-radius: 15px;
 
       > iframe {

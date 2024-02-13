@@ -33,19 +33,25 @@ import {
   fetchDashboardCustomers,
   fetchDashboardProducts,
 } from "./app/actions/admin-dashboard";
+import { auth } from "./firebase-auth";
+import { onAuthStateChanged } from "firebase/auth";
+import { userIsUnAuthenticated } from "./app/reducers/user";
 
 const App = () => {
   const { loading, user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchUser(dispatch);
-    fetchProducts(dispatch);
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        await fetchUser(dispatch, user.uid);
+      } else {
+        dispatch(userIsUnAuthenticated());
+      }
+    });
     fetchFeaturedProducts(dispatch);
-
     fetchDashboardProducts(dispatch);
     fetchDashboardCustomers(dispatch);
-    fetchAdminDashboardStats(dispatch);
   }, []);
 
   return loading ? (
@@ -54,42 +60,104 @@ const App = () => {
     <Router>
       <Navbar user={user} />
       <Routes>
-        {/* Unauthenticated User Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/shop/:id" element={<Product />} />
 
+        {/* Unauthenticated User Routes */}
         <Route
           path="/auth"
           element={
-            <ProtectedRoute isAuthenticated={user ? false : true}>
-              <Auth />
-            </ProtectedRoute>
+            <ProtectedRoute
+              Component={Auth}
+              user={user ? false : true}
+              isAdminRoute={false}
+            />
           }
         />
+        {/* Unauthenticated User Routes */}
 
-        {/* Authenticated User Routes  */}
-        {/* <ProtectedRoute> */}
-        <Route path="/user/:id" element={<Profile user={user} />} />
-        <Route path="/user/cart-items" element={<Cart />} />
-        {/* </ProtectedRoute> */}
+        {/* Authenticated User Routes */}
+        <Route
+          path="/user/:id"
+          element={
+            <ProtectedRoute
+              Component={Profile}
+              user={user ? true : false}
+              isAdminRoute={false}
+            />
+          }
+        />
+        <Route
+          path="/user/cart-items"
+          element={
+            <ProtectedRoute
+              Component={Cart}
+              user={user ? true : false}
+              isAdminRoute={false}
+            />
+          }
+        />
+        {/* Authenticated User Routes */}
 
-        {/* Admin Routes Below */}
-        <Route path="/admin/dashboard" element={<Dashboard />} />
+        {/* Only Admin Routes */}
+        <Route
+          path="/admin/dashboard"
+          element={
+            <ProtectedRoute
+              Component={Dashboard}
+              user={user ? true : false}
+              isAdminRoute={true}
+              admin={user ? (user.role === "admin" ? true : false) : null}
+            />
+          }
+        />
         <Route
           path="/admin/products-dashboard"
-          element={<ProductDashboard />}
+          element={
+            <ProtectedRoute
+              Component={ProductDashboard}
+              user={user ? true : false}
+              isAdminRoute={true}
+              admin={user ? (user.role === "admin" ? true : false) : null}
+            />
+          }
         />
         <Route
           path="/admin/products-dashboard/create"
-          element={<CreateProduct />}
+          element={
+            <ProtectedRoute
+              Component={CreateProduct}
+              user={user ? true : false}
+              isAdminRoute={true}
+              admin={user ? (user.role === "admin" ? true : false) : null}
+            />
+          }
         />
-        <Route path="/admin/products-dashboard/:id" element={<EditProduct />} />
+        <Route
+          path="/admin/products-dashboard/:id"
+          element={
+            <ProtectedRoute
+              Component={EditProduct}
+              user={user ? true : false}
+              isAdminRoute={true}
+              admin={user ? (user.role === "admin" ? true : false) : null}
+            />
+          }
+        />
 
         <Route
           path="/admin/customer-dashboard"
-          element={<CustomerDashboard />}
+          element={
+            <ProtectedRoute
+              Component={CustomerDashboard}
+              user={user ? true : false}
+              isAdminRoute={true}
+              admin={user ? (user.role === "admin" ? true : false) : null}
+            />
+          }
         />
+        {/* Only Admin Routes */}
 
         <Route path="*" element={<PageNotFound />} />
       </Routes>

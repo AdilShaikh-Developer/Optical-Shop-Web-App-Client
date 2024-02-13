@@ -1,20 +1,26 @@
+// Importing Modules
+import axios from "axios";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+
+// Importing Components
 import { Link } from "react-router-dom";
-
-import { AiOutlineDelete, AiOutlineEdit, AiOutlinePlus } from "react-icons/ai";
-import { IoPricetagsOutline, IoPricetags } from "react-icons/io5";
-
-import TableHOC from "../../components/admin/TableHOC";
 import Navbar from "../../components/admin/Navbar";
+import TableHOC from "../../components/admin/TableHOC";
 
+// Importing Icons
+import { AiOutlineDelete, AiOutlineEdit, AiOutlinePlus } from "react-icons/ai";
+import { IoPricetags, IoPricetagsOutline } from "react-icons/io5";
+
+// Importing Actions
+import { fetchDashboardProducts } from "../../app/actions/admin-dashboard";
+import { fetchFeaturedProducts } from "../../app/actions/product";
+
+// Importing Stylesheets
 import "../../styles/admin/admin.scss";
 import "../../styles/admin/products.scss";
-import { fetchDashboardProducts } from "../../app/actions/admin-dashboard";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchFeaturedProducts } from "../../app/actions/product";
-import toast from "react-hot-toast";
-import ConfirmDialog from "../../components/ConfirmDialog";
-import axios from "axios";
+import SkeletonLoader from "../../components/SkeletonLoader";
 
 const columns = [
   {
@@ -60,13 +66,13 @@ const featuredProductTableColumns = [
 ];
 
 const ProductDashboard = () => {
-  const [rows, setRows] = useState([]);
+  const [productsRows, setProductsRows] = useState([]);
   const [featuredProductsRows, setFeaturedProductsRows] = useState([]);
 
-  // const [confirmation, setConfirmation] = useState(false);
-
-  const data = useSelector((state) => state.admin.dashboardProducts);
+  const { loading, dashboardProducts } = useSelector((state) => state.admin);
   const { featuredProducts } = useSelector((state) => state.product);
+
+  const dispatch = useDispatch();
 
   const handleRemoveFeaturedProduct = async (e) => {
     const confirmation = confirm(
@@ -80,6 +86,8 @@ const ProductDashboard = () => {
           }`
         );
         toast.success("Product remove from featured-products successfully!");
+        fetchDashboardProducts(dispatch);
+        fetchFeaturedProducts(dispatch);
       } else toast.success("Removing product featured canceled.");
     } catch (error) {
       toast.error("error");
@@ -98,7 +106,8 @@ const ProductDashboard = () => {
           }`
         );
         toast.success(res.data.message);
-        console.log(res.data.message);
+        fetchDashboardProducts(dispatch);
+        fetchFeaturedProducts(dispatch);
       } else toast.success("Making product featured canceled.");
     } catch (error) {
       toast.error("error");
@@ -116,6 +125,7 @@ const ProductDashboard = () => {
           }/availability`
         );
         toast.success(res.data.response);
+        fetchDashboardProducts(dispatch);
       } else toast.success("Availability change canceled.");
     } catch (error) {
       toast.error("error");
@@ -134,18 +144,17 @@ const ProductDashboard = () => {
           }`
         );
         toast.success(res.data.message);
+        fetchDashboardProducts(dispatch);
       } else toast.success("Product deletion canceled.");
     } catch (error) {
       toast.error("error");
     }
   };
 
-  const dispatch = useDispatch();
   useEffect(() => {
-    fetchDashboardProducts(dispatch);
-    if (data)
-      setRows(
-        data.map((i) => ({
+    if (dashboardProducts)
+      setProductsRows(
+        dashboardProducts.map((i) => ({
           photos: <img src={`${import.meta.env.VITE_SERVER}/${i.photos[0]}`} />,
           name: i.name,
           category: i.category,
@@ -164,14 +173,7 @@ const ProductDashboard = () => {
             <div
               className={i.availability ? "green" : "red"}
               value={i._id}
-              onClick={
-                i.availability
-                  ? handleProductAvailaibility
-                  : () =>
-                      toast.error(
-                        "Cannot make a out-of-stock product, featured product."
-                      )
-              }
+              onClick={handleProductAvailaibility}
             />
           ),
 
@@ -247,39 +249,48 @@ const ProductDashboard = () => {
         ),
       }))
     );
-  }, []);
+  }, [dashboardProducts, featuredProducts]);
 
   const Table = TableHOC(
     columns,
-    rows,
+    productsRows,
     "dashboard-product-box",
-    rows.length > 5
+    10,
+    productsRows.length > 10
   )();
   const FeaturedProductTable = TableHOC(
     featuredProductTableColumns,
     featuredProductsRows,
     "dashboard-product-box",
+    5,
     featuredProductsRows.length > 5
   )();
 
   return (
     <div className="admin-dashboard-page">
       <Navbar />
-      <div className="product-dashboard-container">
-        <h2 className="heading">Product Management</h2>
-        <main className="products-table-container">{Table}</main>
-      </div>
-      <div className="featured-product-dashboard-container">
-        <h2 className="heading">Featured Product Management</h2>
-        <main className="products-table-container">{FeaturedProductTable}</main>
-      </div>
-      <Link
-        to={"/admin/products-dashboard/create"}
-        className="create-product-button"
-      >
-        <AiOutlinePlus />
-      </Link>
-      {/* {confirmation ? <ConfirmDialog /> : ""} */}
+      {loading ? (
+        <SkeletonLoader width="80%" length={15} />
+      ) : (
+        <>
+          <div className="product-dashboard-container">
+            <h2 className="heading">Product Management</h2>
+            <main className="products-table-container">{Table}</main>
+          </div>
+          <div className="featured-product-dashboard-container">
+            <h2 className="heading">Featured Product Management</h2>
+            <main className="products-table-container">
+              {FeaturedProductTable}
+            </main>
+          </div>
+          <Link
+            to={"/admin/products-dashboard/create"}
+            className="create-product-button"
+          >
+            <AiOutlinePlus />
+          </Link>
+        </>
+      )}
     </div>
   );
 };

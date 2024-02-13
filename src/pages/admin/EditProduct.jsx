@@ -1,18 +1,30 @@
-import { useDispatch, useSelector } from "react-redux";
-import Navbar from "../../components/admin/Navbar";
-import SkeletonLoader from "../../components/SkeletonLoader";
-import PageNotFound from "../../pages/PageNotFound";
+// Importing Modules
+import axios from "axios";
 import { useEffect, useState } from "react";
-import { fetchDashboardProduct } from "../../app/actions/admin-dashboard";
+import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
+
+// Importing Components
 import Carousel from "../../components/Carousel";
+import SkeletonLoader from "../../components/SkeletonLoader";
+import Navbar from "../../components/admin/Navbar";
+import PageNotFound from "../../pages/PageNotFound";
+
+// Importing Icons
 import { AiOutlineDelete } from "react-icons/ai";
 import { FcAddImage } from "react-icons/fc";
+
+// Importing Actions
+import {
+  fetchDashboardProduct,
+  fetchDashboardProducts,
+} from "../../app/actions/admin-dashboard";
+
+// Importing Stylesheets
 import "../../styles/admin/admin.scss";
 import "../../styles/admin/products.scss";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import toast from "react-hot-toast";
 
 const EditProduct = () => {
   const { loading, product } = useSelector((state) => state.admin);
@@ -73,6 +85,7 @@ const EditProduct = () => {
         formData
       );
       toast.success(res.data.message);
+      fetchDashboardProducts(dispatch);
       navigate("/admin/products-dashboard");
     } catch (error) {
       toast.error(error.response.data.message);

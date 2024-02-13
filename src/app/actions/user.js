@@ -33,23 +33,18 @@ export const authenticateUser = async (user) => {
   }
 };
 
-export const fetchUser = async (dispatch) => {
+export const fetchUser = async (dispatch, userId) => {
   try {
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        const res = await axios.post(
-          `${import.meta.env.VITE_SERVER}/api/v1/users/profile`,
-          { id: user.uid }
-        );
+    const res = await axios.post(
+      `${import.meta.env.VITE_SERVER}/api/v1/users/profile`,
+      { id: userId }
+    );
 
-        dispatch(userAuthentication(res.data.response));
-        toast.success(res.data.message);
-      } else {
-        dispatch(userIsUnAuthenticated());
-      }
-    });
+    dispatch(userAuthentication(res.data.response));
   } catch (error) {
-    toast.error("Failed to find user. Try again");
+    // toast.error("Failed to find user. Try again");
+    // console.log(error);
+    console.log("error", error);
   }
 };
 
