@@ -325,7 +325,9 @@ const Product = () => {
       </div>
       <div className="action-buttons">
         <Link
-          to={`https://wa.me/8625833128?text=I'm%20Interested%20in%20purchasing%20the%20following%20product:%0a${product.name},%0ahttp://localhost:5173/shop/${product._id}`}
+          to={`https://wa.me/8625833128?text=I'm%20Interested%20in%20purchasing%20the%20following%20product:%0a${
+            product.name
+          },%0a${import.meta.env.VITE_CLIENT}/shop/${product._id}`}
         >
           Order Via <FaWhatsapp />
         </Link>
