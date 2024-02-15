@@ -65,7 +65,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <div className="product-card">
-      <Link to={`/shop/${product._id}`}>
+      <Link to={`/shop/${product._id}`} className="carousel-container">
         <Carousel
           photos={product.photos}
           effect={"coverflow"}

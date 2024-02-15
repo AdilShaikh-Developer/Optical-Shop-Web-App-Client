@@ -4,7 +4,7 @@
   align-items: center;
 
   height: 88vh;
-  padding: 7vw 5vw;
+  padding: 7% 5%;
 
   .product-container {
     height: 80vh;
@@ -29,16 +29,18 @@
     background-color: white;
 
     position: fixed;
-    top: calc(12vh + 2.5vw);
-    left: 2.5vw;
+    top: calc(12vh + 2.5%);
+    left: 2.5%;
   }
 
   .product-details-container {
     border: 1px solid lightgrey;
     width: 90vw;
     img {
-      height: 30vh;
+      height: 35vh;
       width: 100%;
+      object-fit: contain;
+      padding: 5%;
       border-radius: 10px;
     }
 
@@ -46,29 +48,30 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 15px;
 
       padding: 1vw 3vw 3vw 3vw;
 
       border-bottom: 1px solid lightgrey;
 
+      font-size: 0.9rem;
       div {
         width: 25%;
-        font-size: 1.5rem;
 
         display: flex;
         justify-content: space-evenly;
         gap: 5px;
 
         svg {
-          font-size: 1.7rem;
+          font-size: 1.5rem;
         }
       }
     }
     .product-details {
-      padding: 3vw;
+      padding: 3%;
 
       h4 {
-        padding-bottom: 1.5vw;
+        padding-bottom: 2%;
       }
 
       div {
@@ -85,7 +88,7 @@
   }
   .action-buttons {
     height: 8vh;
-    width: 90vw;
+    width: 100%;
 
     display: flex;
     button,
@@ -107,7 +110,7 @@
 
       gap: 10px;
 
-      font-size: 0.8rem;
+      font-size: 0.75rem;
 
       svg {
         font-size: 1.2rem;
@@ -118,8 +121,7 @@
     border: 1px solid lightgrey;
     display: flex;
     flex-direction: column;
-    // align-items: center;
-    padding: 3vw;
+    padding: 3%;
 
     h4 {
       padding: 0 0 10px 0;
@@ -128,7 +130,7 @@
       display: flex;
       flex-direction: column;
 
-      padding-top: 5vw;
+      padding-top: 5%;
 
       .existing-rating {
         border: 1px solid grey;
@@ -141,7 +143,8 @@
         gap: 5px;
 
         height: 15vh;
-        width: 65vw;
+        width: 70%;
+        max-width: 300px;
 
         margin: auto;
 
@@ -167,17 +170,23 @@
       .existing-rating-chart-container {
         display: flex;
         flex-direction: column;
+        align-items: center;
 
-        padding: 3vw;
+        padding: 3%;
 
         div {
-          padding: 1vw;
+          padding: 3px;
 
           display: flex;
+          justify-content: center;
           align-items: center;
           gap: 10px;
-          // justify-content: space-around;
 
+          width: 100%;
+          span {
+            text-align: center;
+            width: 15%;
+          }
           svg {
             font-size: 0.9rem;
           }
@@ -185,7 +194,7 @@
             border: 1px solid grey;
             border-radius: 15px;
 
-            width: 70%;
+            width: 60%;
 
             display: flex;
             justify-content: flex-start;
@@ -202,10 +211,11 @@
       }
       > span {
         border: 1px solid grey;
+
         background-color: #ffc107;
         border-radius: 5px;
-        margin: 5vw;
-        padding: 5vw;
+        margin: 5%;
+        padding: 5%;
         text-align: center;
       }
       button {
@@ -221,18 +231,18 @@
       }
       .review-container {
         border: 1px solid lightgrey;
-        margin: 5vw 0;
+        margin: 5% 0;
 
         .review-card {
           border-bottom: 1px solid lightgrey;
 
-          padding: 3vw 0;
+          padding: 3% 0;
 
           display: flex;
           justify-content: space-evenly;
 
           .profie-picture {
-            padding: 2vw;
+            padding: 15px 10px;
             img {
               height: 60px;
               width: 60px;
@@ -284,8 +294,8 @@
 
   background-color: transparent;
 
-  height: 88vh;
-  width: 100vw;
+  height: 90%;
+  width: 100%;
 
   display: flex;
   flex-direction: column;
@@ -298,18 +308,16 @@
 
     background-color: white;
 
-    height: 80%;
     width: 80%;
 
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
 
     padding: 10px;
 
     > button {
-      height: 40px;
-      width: 40px;
+      height: 30px;
+      width: 30px;
 
       display: flex;
       align-items: center;
@@ -318,17 +326,16 @@
       border: 1px solid grey;
       border-radius: 5px;
 
-      // background-color: rgba(0, 0, 0, 0.7);
       background-color: #ffc107;
       color: black;
 
-      font-size: 2rem;
+      font-size: 1.5rem;
     }
     > h3 {
       text-align: center;
-      padding: 2vw 5vw;
+      padding: 2% 5%;
 
-      font-size: 1.5rem;
+      font-size: 1rem;
     }
     form {
       height: 70%;
@@ -341,7 +348,7 @@
         justify-content: center;
         gap: 10px;
 
-        font-size: 1.2rem;
+        font-size: 1rem;
 
         input[type="radio"] {
           display: none;
@@ -352,12 +359,14 @@
       }
       p {
         padding: 5px 5px 10px 5px;
+        font-size: 0.8rem;
       }
 
       textarea {
         margin: 15px;
         padding: 10px;
         width: calc(100% - 30px);
+        max-width: 450px;
 
         border: 1px solid black;
         border-radius: 5px;
@@ -365,8 +374,10 @@
       }
       button {
         padding: 15px;
+        margin-bottom: 20px;
 
         width: 90%;
+        max-width: 300px;
         border: none;
         border-radius: 10px;
         outline: none;
@@ -374,6 +385,8 @@
         color: black;
 
         letter-spacing: 2px;
+
+        font-size: 0.7rem;
 
         font-weight: bolder;
       }

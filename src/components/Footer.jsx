@@ -1,6 +1,6 @@
 // code below is generated through chatGPT
 import React from "react";
-import { CiFacebook, CiTwitter, CiInstagram } from "react-icons/ci";
+import { CiFacebook, CiInstagram, CiTwitter } from "react-icons/ci";
 import { Link } from "react-router-dom"; // Import Link from 'react-router-dom' for navigation
 
 const Footer = () => {

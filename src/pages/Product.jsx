@@ -229,54 +229,64 @@ const Product = () => {
             </div>
             <div className="existing-rating-chart-container">
               <div>
-                5 <FaStar />
+                <span>
+                  5 <FaStar />
+                </span>
                 <div className="vertical-bar-container">
                   <div
                     className="bar"
                     style={{ width: `${starRating[4]}%` }}
                   ></div>
                 </div>
-                {starRating[4]}%
+                <span>{starRating[4]}%</span>
               </div>
               <div>
-                4 <FaStar />
+                <span>
+                  4 <FaStar />
+                </span>
                 <div className="vertical-bar-container">
                   <div
                     className="bar"
                     style={{ width: `${starRating[3]}%` }}
                   ></div>
                 </div>
-                {starRating[3]}%
+                <span>{starRating[3]}%</span>
               </div>
               <div>
-                3 <FaStar />
+                <span>
+                  3 <FaStar />
+                </span>
                 <div className="vertical-bar-container">
                   <div
                     className="bar"
                     style={{ width: `${starRating[2]}%` }}
                   ></div>
                 </div>
-                {starRating[2]}%
+                <span>{starRating[2]}%</span>
               </div>
               <div>
-                2 <FaStar />
+                <span>
+                  2 <FaStar />
+                </span>
                 <div className="vertical-bar-container">
                   <div
                     className="bar"
                     style={{ width: `${starRating[1]}%` }}
                   ></div>
                 </div>
-                {starRating[1]}%
+                <span>{starRating[1]}%</span>
               </div>
               <div>
-                1 <FaStar />
+                <span>
+                  1 <FaStar />
+                </span>
                 <div className="vertical-bar-container">
                   <div
                     className="bar"
                     style={{ width: `${starRating[0]}%` }}
                   ></div>
                 </div>
-                {starRating[0]}%
+                <span>{starRating[0]}%</span>
               </div>
             </div>
             {user ? (
@@ -374,6 +384,7 @@ const Product = () => {
                         type="radio"
                         name="rating"
                         value={currentRating}
+                        required
                         onClick={() => setRating(currentRating)}
                       />
                       <FaStar
@@ -396,6 +407,7 @@ const Product = () => {
               <textarea
                 cols="30"
                 rows="10"
+                required
                 minLength={"0"}
                 maxLength={"100"}
                 placeholder="We value your input, please share your experience..."

@@ -1,9 +1,9 @@
 import axios from "axios";
 import {
-  fetchDashboardStats,
   DashboardProducts,
-  product,
   dashboardCustomers,
+  fetchDashboardStats,
+  product,
 } from "../reducers/admin-dashboard";
 
 export const fetchAdminDashboardStats = async (dispatch) => {
@@ -52,5 +52,7 @@ export const fetchDashboardProduct = async (dispatch, id) => {
       }/api/v1/admin-dashboard/products-data/${id}`
     );
     dispatch(product(res.data.response));
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 };

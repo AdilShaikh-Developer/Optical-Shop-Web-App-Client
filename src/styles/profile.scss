@@ -45,7 +45,7 @@
     align-items: center;
     justify-content: flex-start;
 
-    padding: 5vw;
+    padding: 5%;
 
     background-color: white;
     color: grey;
@@ -58,7 +58,7 @@
 
   .product-card {
     border-bottom: 1px solid lightgrey;
-    padding: 3vw;
+    padding: 3%;
 
     img {
       height: 30vh;
@@ -155,7 +155,7 @@
   display: flex;
   justify-content: center;
   > span {
-    padding: 5vw;
+    padding: 5%;
     color: grey;
   }
 }

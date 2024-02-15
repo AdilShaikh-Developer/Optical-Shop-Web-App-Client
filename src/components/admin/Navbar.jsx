@@ -9,8 +9,6 @@ import { MdAnalytics, MdDashboard } from "react-icons/md";
 import { RiShoppingBag3Fill } from "react-icons/ri";
 import { useSelector } from "react-redux";
 
-import toast from "react-hot-toast";
-
 const Navbar = () => {
   const { user } = useSelector((state) => state.user);
   const [profileMenu, setProfileMenu] = useState(false);

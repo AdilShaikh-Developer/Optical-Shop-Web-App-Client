@@ -10,7 +10,7 @@
     z-index: 10;
 
     height: 10vh;
-    width: 80vw;
+    width: 80%;
 
     margin: auto;
 
@@ -20,9 +20,7 @@
     .search-bar-container {
       background-color: white;
       border: 1px solid black;
-      border-radius: 25px;
-      border-top-right-radius: 25px;
-      border-bottom-right-radius: 25px;
+      border-radius: 5px;
 
       height: 8vh;
       width: 100%;
@@ -31,20 +29,20 @@
       align-items: center;
       justify-content: space-between;
 
+      padding: 5px 10px;
+
       input {
         border: none;
-        border-radius: 25px;
         outline: none;
-        padding: 0 25px;
         font-size: 0.95rem;
         height: 100%;
         width: calc(100% - 7vh);
       }
       svg {
-        height: 7vh;
-        width: 7vh;
+        height: 6vh;
+        width: 6vh;
 
-        padding: 10px;
+        padding: 5px;
         margin-right: 1px;
 
         border: 1px solid grey;
@@ -57,108 +55,21 @@
     height: 67vh;
 
     overflow-y: scroll;
-
-    .product-card {
-      border-bottom: 1px solid lightgrey;
-      padding: 3vw;
-
-      img {
-        height: 30vh;
-      }
-
-      .product-details-section {
-        display: flex;
-        padding: 5px;
-
-        .product-details {
-          width: 70%;
-          span {
-            padding: 5px 0;
-            color: grey;
-          }
-        }
-        .product-rating {
-          border-left: 1px solid grey;
-
-          width: 30%;
-
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          svg {
-            margin-left: 5px;
-            font-size: 0.8rem;
-          }
-        }
-      }
-
-      .product-interactive-buttons {
-        border: 1px solid grey;
-        border-radius: 15px;
-
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        padding: 10px 15px;
-
-        margin-top: 5px;
-
-        font-size: 1.5rem;
-
-        div {
-          width: 40%;
-          display: flex;
-          align-items: center;
-          justify-content: space-evenly;
-
-          svg {
-            font-size: 1.7rem;
-          }
-          .like-heart {
-            color: red !important;
-          }
-        }
-
-        a {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          border: 1px solid #075e54;
-          border-radius: 10px;
-          outline: none;
-
-          background-color: #075e54;
-          color: white;
-
-          padding: 10px 20px;
-
-          font-size: 1rem;
-
-          svg {
-            font-size: 1.5rem;
-            margin-left: 10px;
-          }
-        }
-      }
-
-      img {
-        width: 100%;
-        border: 1px solid lightgrey;
-        border-radius: 10px;
-      }
-    }
   }
 
   .filter-container {
-    border-top: 1px solid grey;
-    border-radius: 10px;
+    border: 1px solid grey;
+    background: white;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
 
-    padding: 2.5%;
+    position: fixed;
+    bottom: 0;
+
+    padding: 2%;
 
     height: 11vh;
+    width: 100%;
 
     select {
       height: 100%;
@@ -171,4 +82,8 @@
       outline: none;
     }
   }
+}
+
+.footer {
+  display: none;
 }

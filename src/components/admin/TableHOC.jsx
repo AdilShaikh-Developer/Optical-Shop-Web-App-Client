@@ -1,12 +1,6 @@
-import { BsSortUp, BsSortDown } from "react-icons/bs";
+import { BsSortDown, BsSortUp } from "react-icons/bs";
 
-import {
-  Column,
-  usePagination,
-  useSortBy,
-  useTable,
-  TableOptions,
-} from "react-table";
+import { usePagination, useSortBy, useTable } from "react-table";
 
 const TableHOC = (
   columns,

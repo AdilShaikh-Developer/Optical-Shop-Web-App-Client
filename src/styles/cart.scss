@@ -3,113 +3,17 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    gap: 15px;
 
-    padding: 5vw;
+    padding: 5%;
 
     background-color: white;
     color: grey;
 
     border: 1px solid lightgrey;
-    border-radius: 10px;
 
     > svg {
-      margin-right: 15px;
       font-size: 1.5rem;
-    }
-  }
-
-  .product-cards-container {
-    .product-card {
-      border-bottom: 1px solid lightgrey;
-      padding: 3vw;
-
-      img {
-        height: 30vh;
-      }
-
-      .product-details-section {
-        display: flex;
-        padding: 5px;
-
-        .product-details {
-          width: 70%;
-          span {
-            padding: 5px 0;
-            color: grey;
-          }
-        }
-        .product-rating {
-          border-left: 1px solid grey;
-
-          width: 30%;
-
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          svg {
-            margin-left: 5px;
-            font-size: 0.8rem;
-          }
-        }
-      }
-
-      .product-interactive-buttons {
-        border: 1px solid grey;
-        border-radius: 15px;
-
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        padding: 10px 15px;
-
-        margin-top: 5px;
-
-        font-size: 1.5rem;
-
-        div {
-          width: 40%;
-          display: flex;
-          align-items: center;
-          justify-content: space-evenly;
-
-          svg {
-            font-size: 1.7rem;
-          }
-          .like-heart {
-            color: red !important;
-          }
-        }
-
-        a {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          border: 1px solid #075e54;
-          border-radius: 10px;
-          outline: none;
-
-          background-color: #075e54;
-          color: white;
-
-          padding: 10px 20px;
-
-          font-size: 1rem;
-
-          svg {
-            font-size: 1.5rem;
-            margin-left: 10px;
-          }
-        }
-      }
-
-      img {
-        width: 100%;
-        border: 1px solid lightgrey;
-        border-radius: 10px;
-      }
     }
   }
 

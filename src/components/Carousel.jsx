@@ -1,8 +1,8 @@
 // Importing Modules
 
 // Importing Components
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // Importing Styles
 import "swiper/scss";

@@ -3,11 +3,8 @@ import toast from "react-hot-toast";
 import {
   userAuthentication,
   userCartItems,
-  userIsUnAuthenticated,
   userLikedProduct,
 } from "../reducers/user";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../../firebase-auth";
 
 export const authenticateUser = async (user) => {
   if (user) {
@@ -42,9 +39,7 @@ export const fetchUser = async (dispatch, userId) => {
 
     dispatch(userAuthentication(res.data.response));
   } catch (error) {
-    // toast.error("Failed to find user. Try again");
-    // console.log(error);
-    console.log("error", error);
+    console.log(error);
   }
 };
 
@@ -56,6 +51,7 @@ export const fetchLikedProducts = async (dispatch, userId) => {
     );
     dispatch(userLikedProduct(res.data.response));
   } catch (error) {
+    console.log(error);
     toast.error("Failed to find liked products. Try again");
   }
 };
@@ -70,6 +66,7 @@ export const fetchCartItems = async (dispatch, userId) => {
     );
     dispatch(userCartItems(res.data.response));
   } catch (error) {
+    console.log(error);
     toast.error("Failed to find cart items. Try again");
   }
 };

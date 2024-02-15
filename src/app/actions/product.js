@@ -64,7 +64,7 @@ export const fetchFeaturedProducts = async (dispatch) => {
     dispatch(storeFeaturedProducts(res.data.response));
   } catch (error) {
     dispatch(storeProcessFailed());
-    toast.error("products are unavailable");
+    toast.error("featured products are unavailable");
   }
 };
 
@@ -76,6 +76,5 @@ export const fetchCategories = async (dispatch) => {
     dispatch(storeCategories(res.data.response));
   } catch (error) {
     dispatch(storeProcessFailed());
-    toast.error("products are unavailable");
   }
 };

@@ -40,11 +40,11 @@ const Home = () => {
     <div className="home">
       <div className="carousel-container">
         {loading ? (
-          <SkeletonLoader width="100%" length="4" />
+          <SkeletonLoader width="100%" length="5" />
         ) : (
           <Carousel
             effect={"fade"}
-            slidesPerView={1}
+            slidesPerView={"auto"}
             modules={[Pagination, Autoplay, EffectFade]}
             coverflowEffect={false}
             autoplay={true}
@@ -55,7 +55,7 @@ const Home = () => {
       <div className="sliding-carousel-container">
         <h2>variety of products</h2>
         {loading ? (
-          <SkeletonLoader width="80%" length="4" />
+          <SkeletonLoader width="80%" length="5" />
         ) : (
           <Carousel
             effect={"coverflow"}

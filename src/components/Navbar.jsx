@@ -1,15 +1,20 @@
 // Importing Modules
-import { Link, useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { signOut } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase-auth";
-import { useDispatch, useSelector } from "react-redux";
 
 // Importing React Icons
-import { CiLogin, CiShop } from "react-icons/ci";
 import { CgProfile } from "react-icons/cg";
-import { CiUser, CiLogout, CiSettings, CiShoppingCart } from "react-icons/ci";
+import {
+  CiLogin,
+  CiLogout,
+  CiShop,
+  CiShoppingCart,
+  CiUser,
+} from "react-icons/ci";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { IoAnalyticsOutline } from "react-icons/io5";
 import { MdDashboard } from "react-icons/md";
@@ -37,7 +42,6 @@ const Navbar = ({ user }) => {
     <>
       <nav className="navbar">
         <Link to="/">
-          {/* this logo can be updated by admin  */}
           <img
             src={`${import.meta.env.VITE_SERVER}/uploads/logo.png`}
             alt="shop logo"
@@ -53,7 +57,6 @@ const Navbar = ({ user }) => {
           {user ? (
             <li onClick={() => setProfileMenu(!profileMenu)}>
               {user.photo ? <img src={user.photo} /> : <CgProfile />}
-              {/* <CgProfile /> */}
             </li>
           ) : (
             <li>
@@ -118,10 +121,7 @@ const Navbar = ({ user }) => {
               </Link>
             </li>
             <li>
-              <Link
-                // onClick={logoutHandler}
-                onClick={logoutHandler}
-              >
+              <Link onClick={logoutHandler}>
                 <CiLogout /> Logout
               </Link>
             </li>
