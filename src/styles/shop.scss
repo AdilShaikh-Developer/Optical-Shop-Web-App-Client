@@ -1,5 +1,6 @@
 .shop-page {
   height: 88vh;
+  width: 100%;
 
   .search-bar-wrapper {
     border-radius: 25px;
@@ -58,18 +59,21 @@
   }
 
   .filter-container {
+    z-index: 15;
     border: 1px solid grey;
     background: white;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
 
-    position: fixed;
+    position: sticky;
     bottom: 0;
 
     padding: 2%;
 
-    height: 11vh;
     width: 100%;
+    // max-width: 500px;
+
+    margin: auto;
 
     select {
       height: 100%;
@@ -84,6 +88,6 @@
   }
 }
 
-.footer {
+.shop-page + .footer {
   display: none;
 }

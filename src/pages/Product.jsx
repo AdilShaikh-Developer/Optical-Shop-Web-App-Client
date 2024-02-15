@@ -114,10 +114,10 @@ const Product = () => {
     <SkeletonLoader width="90%" length={15} />
   ) : product ? (
     <div className="product-page">
-      <Link to={"/shop"} className="back-button">
-        <IoIosArrowRoundBack />
-      </Link>
       <div className="product-container">
+        <Link to={"/shop"} className="back-button">
+          <IoIosArrowRoundBack />
+        </Link>
         <div className="product-details-container">
           <Carousel
             photos={product.photos}

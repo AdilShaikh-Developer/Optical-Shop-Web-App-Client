@@ -3,11 +3,15 @@
   flex-direction: column;
   align-items: center;
 
+  margin: auto;
+
   height: 88vh;
-  padding: 7% 5%;
+  width: 100%;
 
   .product-container {
     height: 80vh;
+    width: 95%;
+    padding: 0 2.5%;
     overflow-y: auto;
   }
 
@@ -17,25 +21,28 @@
     border: 1px solid grey;
     border-radius: 5px;
 
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
+    align-self: flex-start;
+
     font-size: 2rem;
 
     background-color: white;
 
-    position: fixed;
-    top: calc(12vh + 2.5%);
-    left: 2.5%;
+    position: relative;
+    top: 20px;
+    left: -7px;
   }
 
   .product-details-container {
     border: 1px solid lightgrey;
-    width: 90vw;
+    width: 100%;
+    // max-width: 500px;
     img {
       height: 35vh;
       width: 100%;
@@ -89,6 +96,7 @@
   .action-buttons {
     height: 8vh;
     width: 100%;
+    max-width: 500px;
 
     display: flex;
     button,
